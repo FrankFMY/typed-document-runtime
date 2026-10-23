@@ -1,11 +1,11 @@
 # Third-party notices
 
-The emitted library imports Zod 4.5.4 as a separate runtime dependency.
+The emitted library imports Zod 4.6.6 as a separate runtime dependency.
 It does not embed Zod or development tools in its ESM files. Zod is distributed
 with its own license; retain the following notice when redistributing Zod,
 including when bundling an application that uses this library.
 
-## Zod 4.5.4 — MIT
+## Zod 4.6.6 — MIT
 
 The following is the complete LICENSE from the pinned Zod distribution.
 
