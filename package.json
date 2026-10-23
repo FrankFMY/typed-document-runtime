@@ -117,7 +117,7 @@
 		"verify": "bun run lint && bun run check && bun test src tests --max-concurrency 1 && bun run build && bun run pack && bun run verify:package"
 	},
 	"dependencies": {
-		"zod": "4.5.4"
+		"zod": "4.6.6"
 	},
 	"devDependencies": {
 		"@types/bun": "1.4.2",

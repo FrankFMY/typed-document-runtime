@@ -109,7 +109,8 @@ try {
 		within(consumer, installed);
 		within(consumer, join(consumer, "node_modules/zod"));
 		assert.equal(readFileSync(join(installed, "package.json"), "utf8"), readFileSync(join(root, "package.json"), "utf8"));
-		assert.equal(JSON.parse(readFileSync(join(consumer, "node_modules/zod/package.json"), "utf8")).version, "4.5.4");
+		assert.match(manifest.dependencies.zod, /^\d+\.\d+\.\d+$/);
+		assert.equal(JSON.parse(readFileSync(join(consumer, "node_modules/zod/package.json"), "utf8")).version, manifest.dependencies.zod);
 		for (const entry of Object.values(manifest.exports)) {
 			for (const path of Object.values(entry)) assert.equal(readFileSync(join(installed, path), "utf8"), readFileSync(join(root, path), "utf8"));
 		}
