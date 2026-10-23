@@ -1,0 +1,129 @@
+{
+	"name": "@frankfmy/typed-document-runtime",
+	"version": "0.1.0",
+	"private": true,
+	"description": "Typed document schemas, deterministic execution, process effects and interactive sandboxing.",
+	"type": "module",
+	"license": "Apache-2.0",
+	"author": "Artem Prianishnikov (FrankFMY)",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/FrankFMY/typed-document-runtime.git"
+	},
+	"homepage": "https://github.com/FrankFMY/typed-document-runtime#readme",
+	"bugs": {
+		"url": "https://github.com/FrankFMY/typed-document-runtime/issues"
+	},
+	"engines": {
+		"node": ">=24.20.0",
+		"bun": ">=1.4.2"
+	},
+	"packageManager": "bun@1.4.2",
+	"files": [
+		"dist/",
+		"docs/",
+		"README.md",
+		"CHANGELOG.md",
+		"LICENSE",
+		"NOTICE",
+		"THIRD_PARTY_NOTICES.md",
+		"CONTRIBUTING.md"
+	],
+	"exports": {
+		"./application-package": {
+			"types": "./dist/application-package.d.ts",
+			"import": "./dist/application-package.js"
+		},
+		"./application-package-merge": {
+			"types": "./dist/application-package-merge.d.ts",
+			"import": "./dist/application-package-merge.js"
+		},
+		"./application-package-plan": {
+			"types": "./dist/application-package-plan.d.ts",
+			"import": "./dist/application-package-plan.js"
+		},
+		"./box-document": {
+			"types": "./dist/box-document.d.ts",
+			"import": "./dist/box-document.js"
+		},
+		"./box-presentation": {
+			"types": "./dist/box-presentation.d.ts",
+			"import": "./dist/box-presentation.js"
+		},
+		"./box-program": {
+			"types": "./dist/box-program.d.ts",
+			"import": "./dist/box-program.js"
+		},
+		"./box-program-semantics": {
+			"types": "./dist/box-program-semantics.d.ts",
+			"import": "./dist/box-program-semantics.js"
+		},
+		"./box-type-system": {
+			"types": "./dist/box-type-system.d.ts",
+			"import": "./dist/box-type-system.js"
+		},
+		"./application-data-contract": {
+			"types": "./dist/application-data-contract.d.ts",
+			"import": "./dist/application-data-contract.js"
+		},
+		"./application-data-query": {
+			"types": "./dist/application-data-query.d.ts",
+			"import": "./dist/application-data-query.js"
+		},
+		"./process-document": {
+			"types": "./dist/process-document.d.ts",
+			"import": "./dist/process-document.js"
+		},
+		"./process-contract": {
+			"types": "./dist/process-contract.d.ts",
+			"import": "./dist/process-contract.js"
+		},
+		"./process-program": {
+			"types": "./dist/process-program.d.ts",
+			"import": "./dist/process-program.js"
+		},
+		"./process-runtime": {
+			"types": "./dist/process-runtime.d.ts",
+			"import": "./dist/process-runtime.js"
+		},
+		"./project-source-snapshot": {
+			"types": "./dist/project-source-snapshot.d.ts",
+			"import": "./dist/project-source-snapshot.js"
+		},
+		"./project-source-history": {
+			"types": "./dist/project-source-history.d.ts",
+			"import": "./dist/project-source-history.js"
+		},
+		"./project-source-comparison": {
+			"types": "./dist/project-source-comparison.d.ts",
+			"import": "./dist/project-source-comparison.js"
+		},
+		"./published-document": {
+			"types": "./dist/published-document.d.ts",
+			"import": "./dist/published-document.js"
+		},
+		"./runtime": {
+			"types": "./dist/runtime.d.ts",
+			"import": "./dist/runtime.js"
+		}
+	},
+	"scripts": {
+		"lint": "oxlint --config .oxlintrc.json --deny-warnings --report-unused-disable-directives src tests scripts examples",
+		"check": "tsc --project tsconfig.test.json",
+		"test": "bun test src tests --max-concurrency 1",
+		"build": "node scripts/build.mjs",
+		"pack": "node scripts/pack.mjs",
+		"verify:package": "node scripts/verify-package.mjs",
+		"verify": "bun run lint && bun run check && bun test src tests --max-concurrency 1 && bun run build && bun run pack && bun run verify:package"
+	},
+	"dependencies": {
+		"zod": "4.5.4"
+	},
+	"devDependencies": {
+		"@types/bun": "1.4.2",
+		"oxlint": "1.89.0",
+		"playwright": "1.63.0",
+		"typescript": "7.0.2",
+		"vite": "8.3.5"
+	}
+}
