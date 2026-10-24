@@ -12,16 +12,17 @@ it possible to inspect a run, replay an effect transcript and step through the
 same semantics without translating to another intermediate language. The host
 supplies storage, permissions, transports and real effects.
 
-Version **0.1.2** is configured for public npm distribution. Check the exact
-registry version before installation:
+## Install from npm
+
+Version **0.1.2** is available as
+[@frankfmy/typed-document-runtime on npm](https://www.npmjs.com/package/@frankfmy/typed-document-runtime).
 
 ```sh
-npm view @frankfmy/typed-document-runtime@0.1.2 version &&
 npm install @frankfmy/typed-document-runtime@0.1.2
 ```
 
-Publication is separate from verification. If that version is unavailable, build
-from source or use the immutable v0.1.1 GitHub archive documented below.
+Source builds and the older, immutable **v0.1.1** GitHub archive documented below
+remain alternatives. The archive is a different version from npm 0.1.2.
 
 ## Build from source
 
