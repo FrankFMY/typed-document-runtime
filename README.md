@@ -12,7 +12,7 @@ it possible to inspect a run, replay an effect transcript and step through the
 same semantics without translating to another intermediate language. The host
 supplies storage, permissions, transports and real effects.
 
-Version **0.1.0** supports source builds and versioned GitHub package archives.
+Version **0.1.1** supports source builds and versioned GitHub package archives.
 Package metadata keeps `private: true` to prevent accidental registry publication;
 it does not restrict using the tarball. npm registry availability is not assumed.
 
@@ -29,7 +29,7 @@ bun run build
 bun run pack
 ```
 
-The archive is `.artifacts/frankfmy-typed-document-runtime-0.1.0.tgz`.
+The archive is `.artifacts/frankfmy-typed-document-runtime-0.1.1.tgz`.
 To create it from a clean clone:
 
 ```sh
@@ -43,16 +43,16 @@ bun run pack
 ## Install an artifact
 
 Use the archive built above, or install the versioned
-[GitHub release](https://github.com/FrankFMY/typed-document-runtime/releases/tag/v0.1.0)
+[GitHub release](https://github.com/FrankFMY/typed-document-runtime/releases/tag/v0.1.1)
 archive in your application:
 
 ```sh
-curl --fail --location --output frankfmy-typed-document-runtime-0.1.0.tgz \
-  https://github.com/FrankFMY/typed-document-runtime/releases/download/v0.1.0/frankfmy-typed-document-runtime-0.1.0.tgz &&
+curl --fail --location --output frankfmy-typed-document-runtime-0.1.1.tgz \
+  https://github.com/FrankFMY/typed-document-runtime/releases/download/v0.1.1/frankfmy-typed-document-runtime-0.1.1.tgz &&
 curl --fail --location --output SHA256SUMS \
-  https://github.com/FrankFMY/typed-document-runtime/releases/download/v0.1.0/SHA256SUMS &&
+  https://github.com/FrankFMY/typed-document-runtime/releases/download/v0.1.1/SHA256SUMS &&
 sha256sum --check SHA256SUMS &&
-npm install ./frankfmy-typed-document-runtime-0.1.0.tgz
+npm install ./frankfmy-typed-document-runtime-0.1.1.tgz
 ```
 
 This verified-download path also works with npm 12's default restriction on
@@ -65,13 +65,13 @@ copy the tarball into it:
 
 ```sh
 npm init -y
-npm install ./frankfmy-typed-document-runtime-0.1.0.tgz
+npm install ./frankfmy-typed-document-runtime-0.1.1.tgz
 ```
 
-Bun applications can use `bun add ./frankfmy-typed-document-runtime-0.1.0.tgz`
+Bun applications can use `bun add ./frankfmy-typed-document-runtime-0.1.1.tgz`
 instead. Import explicit subpaths; there is no root barrel or CommonJS build.
 The archive contains emitted JavaScript, declarations, source maps and docs.
-Zod 4.5.4 is its only runtime dependency.
+Zod 4.6.6 is its only runtime dependency.
 
 ## Run a program
 
@@ -180,10 +180,18 @@ stay in ignored `.verification/`; archives stay in ignored `.artifacts/`.
 The local harness stops allocating dependencies below 10 GiB free disk space.
 It closes the browsers and preview servers it starts. There are no hosted gates.
 
-## Author and license
+## Author and contact
+
+Created and maintained by [Artem Prianishnikov (Артем Прянишников / FrankFMY)](https://github.com/FrankFMY).
+
+- Email: [Pryanishnikovartem@gmail.com](mailto:Pryanishnikovartem@gmail.com)
+- Telegram: [@FrankFMY](https://t.me/FrankFMY)
+- Website: [frankfmy.com](https://frankfmy.com)
+- Profiles: [GitHub](https://github.com/FrankFMY) · [LinkedIn](https://www.linkedin.com/in/frankfmy/) · [X](https://x.com/FrankFMY)
+
+## License
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development steps and
-[CHANGELOG.md](CHANGELOG.md) for release notes. Owner and maintainer:
-[Artem Prianishnikov (FrankFMY)](https://github.com/FrankFMY). The library is licensed under
+[CHANGELOG.md](CHANGELOG.md) for release notes. The library is licensed under
 [Apache-2.0](LICENSE); retain [NOTICE](NOTICE) and applicable
 [third-party notices](THIRD_PARTY_NOTICES.md) when redistributing it.
