@@ -1,7 +1,11 @@
 {
 	"name": "@frankfmy/typed-document-runtime",
-	"version": "0.1.1",
-	"private": true,
+	"version": "0.1.2",
+	"private": false,
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	},
 	"description": "Typed document schemas, deterministic execution, process effects and interactive sandboxing.",
 	"type": "module",
 	"license": "Apache-2.0",

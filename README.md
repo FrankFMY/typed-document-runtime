@@ -12,9 +12,16 @@ it possible to inspect a run, replay an effect transcript and step through the
 same semantics without translating to another intermediate language. The host
 supplies storage, permissions, transports and real effects.
 
-Version **0.1.1** supports source builds and versioned GitHub package archives.
-Package metadata keeps `private: true` to prevent accidental registry publication;
-it does not restrict using the tarball. npm registry availability is not assumed.
+Version **0.1.2** is configured for public npm distribution. Check the exact
+registry version before installation:
+
+```sh
+npm view @frankfmy/typed-document-runtime@0.1.2 version &&
+npm install @frankfmy/typed-document-runtime@0.1.2
+```
+
+Publication is separate from verification. If that version is unavailable, build
+from source or use the immutable v0.1.1 GitHub archive documented below.
 
 ## Build from source
 
@@ -29,7 +36,7 @@ bun run build
 bun run pack
 ```
 
-The archive is `.artifacts/frankfmy-typed-document-runtime-0.1.1.tgz`.
+The archive is `.artifacts/frankfmy-typed-document-runtime-0.1.2.tgz`.
 To create it from a clean clone:
 
 ```sh
@@ -65,10 +72,10 @@ copy the tarball into it:
 
 ```sh
 npm init -y
-npm install ./frankfmy-typed-document-runtime-0.1.1.tgz
+npm install ./frankfmy-typed-document-runtime-0.1.2.tgz
 ```
 
-Bun applications can use `bun add ./frankfmy-typed-document-runtime-0.1.1.tgz`
+Bun applications can use `bun add ./frankfmy-typed-document-runtime-0.1.2.tgz`
 instead. Import explicit subpaths; there is no root barrel or CommonJS build.
 The archive contains emitted JavaScript, declarations, source maps and docs.
 Zod 4.6.6 is its only runtime dependency.
