@@ -5,7 +5,11 @@
 	"description": "Typed document schemas, deterministic execution, process effects and interactive sandboxing.",
 	"type": "module",
 	"license": "Apache-2.0",
-	"author": { "name": "Artem Prianishnikov", "email": "Pryanishnikovartem@gmail.com", "url": "https://frankfmy.com" },
+	"author": {
+		"name": "Artem Prianishnikov",
+		"email": "Pryanishnikovartem@gmail.com",
+		"url": "https://frankfmy.com"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/FrankFMY/typed-document-runtime.git"
