@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.1
+
+- Add verified author email, Telegram and professional profile links to documentation and package metadata.
+- Correct the documented Zod runtime version to the already pinned 4.6.6.
+- No runtime, declaration, dependency or public API changes.
+
+
 ## 0.1.0
 
 - Standalone ESM and TypeScript declarations across 19 explicit public subpaths.
