@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Prepare owned temporary directory
+        run: |
+          CI_TEMP="$RUNNER_TEMP/library-ci-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          mkdir -p "$CI_TEMP"
+          printf 'CI_TEMP=%s\nTMPDIR=%s\n' "$CI_TEMP" "$CI_TEMP" >> "$GITHUB_ENV"
+          df -h .
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24.20.0'
+          package-manager-cache: false
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version: '1.4.2'
+          no-cache: true
+      - name: Install locked dependencies
+        run: bun --no-env-file install --frozen-lockfile
+      - name: Install pinned Chromium and system dependencies
+        run: bun x --no-install playwright install --with-deps chromium
+      - name: Full verify including all 19 installed subpaths and real browser consumers
+        run: bun --no-env-file run verify 2>&1 | tee "$CI_TEMP/verify.log"
+      - name: Dependency audit
+        run: bun --no-env-file audit --json 2>&1 | tee "$CI_TEMP/audit.log"
+      - name: Verify tracked source remains unchanged
+        run: git diff --exit-code
+      - name: Retain qualification logs and consumer receipts
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: qualification-${{ github.sha }}
+          path: |
+            ${{ env.CI_TEMP }}/*.log
+            .verification/consumer-*/report.json
+            .verification/consumer-*/*.log
+            .verification/consumer-*/*/browser.png
+            .artifacts/*.tgz
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
+      - name: Clean owned temporary allocations
+        if: always()
+        run: |
+          if [[ -n "${CI_TEMP:-}" ]]; then rm -rf -- "$CI_TEMP"; fi
