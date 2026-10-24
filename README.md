@@ -178,7 +178,16 @@ consumers, Node and Bun programs, the quickstart, and real browser scenarios
 that exercise all 19 subpaths. Generated projects, browser bundles and reports
 stay in ignored `.verification/`; archives stay in ignored `.artifacts/`.
 The local harness stops allocating dependencies below 10 GiB free disk space.
-It closes the browsers and preview servers it starts. There are no hosted gates.
+It closes the browsers and preview servers it starts. The CI workflow uses the same gates.
+
+## Continuous integration
+
+[CI runs](https://github.com/FrankFMY/typed-document-runtime/actions/workflows/ci.yml)
+run the same complete `bun run verify` gate on pull requests, pushes to `main`,
+and manual dispatch, with Node 24.20.0, Bun 1.4.2 and pinned Chromium.
+This includes independent npm/Bun installs, all 19 subpaths, positive/negative
+types, runtime and real browser scenarios, plus a dependency audit.
+Logs and consumer receipts are retained for seven days; no registry publication runs.
 
 ## Author and contact
 
